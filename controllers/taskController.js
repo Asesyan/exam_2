@@ -1,5 +1,5 @@
 import {v4 as uuidv4} from 'uuid';
-import { validate } from "../utils/validate.js";
+import { validateTaskUpdate, validateTaskId } from "../utils/validate.js";
 
 let tasks = [];
 
@@ -32,5 +32,20 @@ export const getTaskById = (req, res) => {
         res.json(task);
     } else {
         res.status(400).json({ message: 'Task not found' });
+    }
+};
+
+export const updateTask = (req, res) => {
+    const { id } = req.params;
+    const { title, description, completed, taskDate } = req.body;
+    const task = tasks.find(t => t.id === id);
+    if (task) {
+        task.title = title;
+        task.description = description;
+        task.completed = completed;
+        task.taskDate = taskDate;
+        res.json(task);
+    } else {
+        res.status(400).json({ message: 'task not found' });
     }
 };

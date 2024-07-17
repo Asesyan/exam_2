@@ -20,3 +20,17 @@ export const getAllTasks = (req, res) => {
     res.json(tasks);
 };
 
+export const getTaskById = (req, res) => {
+    const { id } = req.params;
+
+    if (!isValidUUID(id)) {
+        return res.status(400).json({ message: 'Not found' });
+    }
+
+    const task = tasks.find(task => task.id === id);
+    if (task) {
+        res.json(task);
+    } else {
+        res.status(400).json({ message: 'Task not found' });
+    }
+};

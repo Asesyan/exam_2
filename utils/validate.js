@@ -1,4 +1,4 @@
-function validateTask(title, description) {
+export function validateTask(title, description) {
     if (!title || !description) {
         return false;
     }
@@ -22,7 +22,11 @@ function validateTask(title, description) {
     return true;
 }
 
+export const getAllTasks = (req, res) => {
+    if (tasks.length > 0) {
+        res.json(tasks);
+    } else {
+        res.status(400).json({ message: 'empty' });
+    }
+};
 
-
-
-module.exports = validateTask;

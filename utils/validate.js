@@ -7,11 +7,7 @@ export function validateTask(title, description) {
         return false;
     }
 
-    if (title.length > 100) {
-        return false;
-    }
-
-    if (!/^[a-zA-Z0-9]+(?: [a-zA-Z0-9]+)*$/.test(title)) {
+    if (title.length > 100 || !/^[a-zA-Z0-9]+(?: [a-zA-Z0-9]+)*$/.test(title)) {
         return false;
     }
 
@@ -22,14 +18,6 @@ export function validateTask(title, description) {
     return true;
 }
 
-export const getAllTasks = (req, res) => {
-    if (tasks.length > 0) {
-        res.json(tasks);
-    } else {
-        res.status(400).json({ message: 'empty' });
-    }
-};
-
 export function validateTaskUpdate(title, description, completed, taskDate) {
     if (title && typeof title !== 'string') {
         return false;
@@ -39,11 +27,7 @@ export function validateTaskUpdate(title, description, completed, taskDate) {
         return false;
     }
 
-    if (title && title.length > 100) {
-        return false;
-    }
-
-    if (title && !/^[a-zA-Z0-9]+(?: [a-zA-Z0-9]+)*$/.test(title)) {
+    if (title && (title.length > 100 || !/^[a-zA-Z0-9]+(?: [a-zA-Z0-9]+)*$/.test(title))) {
         return false;
     }
 
@@ -58,8 +42,6 @@ export function validateTaskUpdate(title, description, completed, taskDate) {
     if (taskDate && isNaN(Date.parse(taskDate))) {
         return false;
     }
+
     return true;
 }
-
-
-

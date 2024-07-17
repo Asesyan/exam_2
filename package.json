@@ -12,5 +12,7 @@
     "express": "^4.19.2",
     "nodemon": "^3.1.4",
     "uuid": "^10.0.0"
-  }
+  },
+  "repository": "https://github.com/Asesyan/exam_2.git",
+  "author": "asesyan <asesyan1@gmail.com>"
 }
